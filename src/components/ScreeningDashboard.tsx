@@ -380,6 +380,11 @@ export default function ScreeningDashboard({
           <span className="text-[10px] font-bold mt-1">Preview</span>
         </button>
       </div>
+
+      {/* DEDICATED PRINT MOUNT - Isolates the printable content from zoom/pan transforms */}
+      <div id="print-mount" className="print-only">
+        <PrintPreview data={data} />
+      </div>
     </div>
   );
 }

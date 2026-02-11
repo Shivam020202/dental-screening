@@ -90,35 +90,40 @@ body {
     margin: 0;
   }
 
-  body {
-    background: white;
-    color: black;
-    print-color-adjust: exact;
-    -webkit-print-color-adjust: exact;
+  /* Default hide all */
+  body * {
+    visibility: hidden;
   }
 
-  /* Hide everything except the print container */
-  .no-print {
-    display: none !important;
+  /* Target our dedicated print mount */
+  #print-mount,
+  #print-mount * {
+    visibility: visible;
   }
 
-  .print-container {
-    display: block !important;
-    position: absolute;
-    top: 0;
+  /* Remove any existing transforms or layout interference */
+  #print-mount {
+    position: fixed;
     left: 0;
+    top: 0;
     width: 210mm;
     height: 297mm;
     margin: 0;
-    padding: 10mm; /* A4 padding */
-    box-shadow: none !important;
-    background: white !important;
-    overflow: hidden;
-    transform: none !important; /* Remove scaling */
-    z-index: 9999;
+    padding: 0;
+    z-index: 99999;
+    background: white;
+    /* Ensure no flex parent interference if visible */
+    display: block !important;
   }
 
-  .print-only {
-    display: block;
+  /* Reset the inner container styles if needed */
+  #print-mount .print-container {
+    width: 100% !important;
+    height: 100% !important;
+    margin: 0 !important;
+    padding: 10mm !important; /* Keep internal padding */
+    box-shadow: none !important;
+    transform: none !important;
+    background: white !important;
   }
 }

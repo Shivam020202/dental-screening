@@ -1,5 +1,5 @@
 import React from "react";
-import { ScreeningData } from "../../ScreeningDashboard";
+import { ScreeningData } from "@/types";
 import { cn } from "@/lib/utils"; // Assuming cn utility exists
 
 interface Props {
