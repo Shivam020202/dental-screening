@@ -19,6 +19,7 @@ import GeneralExamForm from "./forms/GeneralExamForm";
 import DentalExamForm from "./forms/DentalExamForm";
 import TreatmentForm from "./forms/TreatmentForm";
 import PrintPreview from "./preview/PrintPreview";
+import ZoomablePreview from "./preview/ZoomablePreview";
 
 // Types
 export interface ScreeningData {
@@ -152,7 +153,10 @@ export default function ScreeningDashboard({
     }
   }, [data]);
 
-  const updateSection = (section: keyof ScreeningData, value: any) => {
+  const updateSection = (
+    section: keyof Omit<ScreeningData, "id" | "synced">,
+    value: any,
+  ) => {
     setData((prev) => ({
       ...prev,
       [section]: { ...prev[section], ...value },
@@ -239,7 +243,7 @@ export default function ScreeningDashboard({
               </button>
             )}
             <h1 className="text-lg md:text-xl font-bold tracking-tight truncate">
-              FastScreen
+              DentaCamp
             </h1>
           </div>
           <div className="flex items-center space-x-2 md:space-x-4">
@@ -314,22 +318,16 @@ export default function ScreeningDashboard({
       </div>
 
       {/* Right Panel: Live Preview */}
+      {/* Right Panel: Live Preview - Zoomable & Pannable */}
       <div
         className={cn(
-          "w-full lg:w-1/2 h-full bg-slate-200/50 p-4 md:p-8 overflow-y-auto flex-col items-center",
+          "w-full lg:w-1/2 h-full bg-slate-200/50 relative overflow-hidden flex flex-col items-center justify-center", // No scroll here, handled by zoom library
           activeTab === "form" ? "hidden lg:flex" : "flex",
         )}
       >
-        {/* Preview Container: Centers the A4 page and scales it to fit screen width */}
-        <div className="relative w-full flex justify-center min-h-screen lg:min-h-0 mb-32 lg:mb-0">
-          <div className="origin-top transform scale-[0.42] sm:scale-[0.6] md:scale-[0.75] xl:scale-[0.85] transition-transform duration-300 ease-out shadow-2xl">
-            <div className="w-[210mm] min-h-[297mm] bg-white text-slate-900 print-container">
-              <PrintPreview data={data} />
-            </div>
-          </div>
-        </div>
+        <ZoomablePreview data={data} />
 
-        <div className="fixed lg:absolute bottom-24 lg:bottom-8 right-8 flex space-x-4 no-print z-30">
+        <div className="fixed lg:absolute bottom-24 lg:bottom-8 right-8 flex space-x-4 no-print z-50">
           <button
             onClick={handlePrint}
             className="bg-slate-800 text-white p-4 rounded-full shadow-xl hover:bg-slate-700 transition active:scale-95"

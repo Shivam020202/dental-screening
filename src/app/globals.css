@@ -51,7 +51,7 @@
 
 @layer base {
   html {
-    font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+    font-family: var(--font-lato), ui-sans-serif, system-ui, sans-serif;
   }
   h1,
   h2,
@@ -59,7 +59,15 @@
   h4,
   h5,
   h6 {
-    font-family: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
+    font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+    letter-spacing: -0.02em; /* Tighter tracking for display font */
+  }
+  /* Ensure inputs use the body font */
+  input,
+  button,
+  select,
+  textarea {
+    font-family: inherit;
   }
 }
 

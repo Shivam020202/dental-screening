@@ -77,17 +77,17 @@ export default function ToothChart({
   );
 
   return (
-    <div className="w-full bg-slate-100/50 p-4 rounded-xl border border-dashed border-slate-300">
-      <div className="overflow-x-auto pb-4">
-        {/* Container with min-width to ensure chart maintains shape */}
-        <div className="flex flex-col items-center min-w-[600px] mx-auto">
+    <div className="w-full bg-slate-100/50 p-2 md:p-4 rounded-xl border border-dashed border-slate-300">
+      <div className="overflow-x-auto pb-4 px-2">
+        {/* Use w-max to force the container to be as wide as the teeth row, preventing any centering clipping */}
+        <div className="flex flex-col items-center w-max mx-auto gap-8">
           {/* Upper Arch */}
-          <div className="flex flex-col items-center gap-4 mb-8 w-full">
+          <div className="flex flex-col items-center gap-4 w-full">
             <h4 className="text-xs font-bold text-slate-500 uppercase bg-slate-200 px-3 py-1 rounded-full sticky left-0 right-0">
               Upper Arch (Maxilla)
             </h4>
 
-            <div className="flex gap-8 md:gap-12 relative">
+            <div className="flex gap-4 md:gap-8 lg:gap-12 relative px-4">
               {/* Midline Marker */}
               <div className="absolute left-1/2 top-0 bottom-0 w-px bg-slate-300 -translate-x-1/2 z-0"></div>
 
@@ -97,7 +97,7 @@ export default function ToothChart({
 
             {/* Primary Upper */}
             {mode === "Mixed" && (
-              <div className="flex gap-8 relative mt-2 opacity-90 scale-95">
+              <div className="flex gap-4 md:gap-8 relative mt-2 opacity-90 scale-95 px-4">
                 <div className="absolute left-1/2 top-0 bottom-0 w-px bg-slate-300 -translate-x-1/2 z-0"></div>
                 {renderQuadrant(PRIMARY_U_RIGHT, "", true)}
                 {renderQuadrant(PRIMARY_U_LEFT, "", true)}
@@ -106,20 +106,20 @@ export default function ToothChart({
           </div>
 
           {/* Divider */}
-          <div className="w-full h-px bg-slate-200 my-2"></div>
+          <div className="w-full h-px bg-slate-200"></div>
 
           {/* Lower Arch */}
-          <div className="flex flex-col items-center gap-4 mt-4 w-full">
+          <div className="flex flex-col items-center gap-4 w-full">
             {/* Primary Lower */}
             {mode === "Mixed" && (
-              <div className="flex gap-8 relative mb-2 opacity-90 scale-95">
+              <div className="flex gap-4 md:gap-8 relative mb-2 opacity-90 scale-95 px-4">
                 <div className="absolute left-1/2 top-0 bottom-0 w-px bg-slate-300 -translate-x-1/2 z-0"></div>
                 {renderQuadrant(PRIMARY_L_RIGHT, "", true)}
                 {renderQuadrant(PRIMARY_L_LEFT, "", true)}
               </div>
             )}
 
-            <div className="flex gap-8 md:gap-12 relative">
+            <div className="flex gap-4 md:gap-8 lg:gap-12 relative px-4">
               <div className="absolute left-1/2 top-0 bottom-0 w-px bg-slate-300 -translate-x-1/2 z-0"></div>
               {renderQuadrant(L_RIGHT, "Right (Q4)")}
               {renderQuadrant(L_LEFT, "Left (Q3)")}
