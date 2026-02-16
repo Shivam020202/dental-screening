@@ -39,6 +39,25 @@ export interface ScreeningData {
   };
   id: string; // Unique ID for sync
   synced: boolean;
+  campId?: string;
+  doctorId?: string;
+}
+
+export interface Doctor {
+  id: string;
+  name: string;
+  specialty?: string;
+  email?: string;
+  phone?: string;
+}
+
+export interface Camp {
+  id: string;
+  name: string; // e.g., "City School Camp 2024"
+  location: string;
+  date: string;
+  doctorId: string; // The doctor managing/viewing this camp
+  status: "active" | "completed";
 }
 
 export const INITIAL_DATA: ScreeningData = {
